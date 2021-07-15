@@ -1,0 +1,11 @@
+flex:
+  version: 0.5.6
+  workflows:
+    build:
+      command: scripts/build.sh
+    deploy:
+      command: ./scripts/deploy.sh
+    publish:
+      command: service_name=devx-helloworld-springboot-u87tu scripts/publish.sh
+service:
+  name: devx-helloworld-springboot-u87tu

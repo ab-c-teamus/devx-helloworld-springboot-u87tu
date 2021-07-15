@@ -1,0 +1,6 @@
+apiVersion: v2
+name: devx-helloworld-springboot-u87tu
+description: Chart for creating devx-helloworld-springboot-u87tu and ingress mapping our Flexport EKS clusters
+
+type: application
+version: 0.1.0

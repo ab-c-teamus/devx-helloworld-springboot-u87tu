@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    env:
+      flex: "./flex.sh"
+
+      artifactory_base_url: '${{secrets.artifactory_base_url}}'
+      artifactory_username: '${{secrets.artifactory_username}}'
+      artifactory_password: '${{secrets.artifactory_password}}'
+
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Build
+      run: $flex build
+    - name: Publish
+      run: GITHUB_TOKEN=${{secrets.GITHUB_TOKEN}} scripts/publish.sh
+      if: ${{github.ref == 'refs/heads/master'}}

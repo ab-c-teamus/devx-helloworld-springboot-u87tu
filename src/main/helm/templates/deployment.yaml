@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: devx-helloworld-springboot-u87tu
+    backstage.io/kubernetes-id: devx-helloworld-springboot-u87tu
+  name: devx-helloworld-springboot-u87tu
+  namespace: '{{ .Values.config.namespace }}'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devx-helloworld-springboot-u87tu
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: devx-helloworld-springboot-u87tu
+    spec:
+      containers:
+      - image: {{ .Values.config.image.name }}:{{ .Values.config.image.tag }}
+        imagePullPolicy: IfNotPresent
+        name: devx-helloworld-springboot-u87tu
+        resources: {}
+        ports:
+          - containerPort: 8080 
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 5
+status: {}
+

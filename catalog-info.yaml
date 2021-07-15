@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: devx-helloworld-springboot-u87tu
+  description: "This project was created from a template."
+  annotations:
+    github.com/project-slug: TBD
+    backstage.io/techdocs-ref: url:TBD
+    backstage.io/kubernetes-id: devx-helloworld-springboot-u87tu
+spec:
+  type: service
+  lifecycle: experimental
+  owner: service-owner

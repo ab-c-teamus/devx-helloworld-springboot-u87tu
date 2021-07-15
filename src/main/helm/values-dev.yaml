@@ -1,0 +1,6 @@
+config:
+  host: devx-helloworld-springboot-u87tu.nonp-dev-4.use1.eng-nonprod.flexport.internal
+  namespace: devx-helloworld-springboot-u87tu-service-dev
+  image:
+    name: uswest2fpmt.jfrog.io/devx-helloworld-springboot-u87tu-docker-dev-local/devx-helloworld-springboot-u87tu
+    tag: v0.0.1

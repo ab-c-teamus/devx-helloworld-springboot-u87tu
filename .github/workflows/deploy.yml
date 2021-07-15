@@ -1,0 +1,33 @@
+name: Deploy
+
+on:
+  repository_dispatch:
+    types: [artifact-published]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-20.04
+
+    env:
+      flex: "./flex.sh"
+      
+      gcloud_account: '${{ secrets.gcloud_account }}'
+      gcloud_project: '${{ secrets.gcloud_project }}'
+      gcloud_service_account: '${{ secrets.gcloud_service_account }}'
+
+      ENV: 'dev'
+      TAG: '${{ github.event.client_payload.tag }}'
+
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v2
+    - name: Cache files
+      uses: actions/cache@v2
+      with:
+        path: |
+          google-cloud-sdk
+          /home/linuxbrew/.linuxbrew/Cellar
+        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+    - name: Deploy
+      run: $flex deploy
